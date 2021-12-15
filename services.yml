@@ -1,0 +1,13 @@
+  ui-frontend-for-famanager:
+    scale: 1
+    startup: yes
+    always: yes
+    network: NodePort
+    env:
+      REACT_APP_FACTORY_NAME: ''
+    ports:
+      - name: frontend
+        port: 4000
+        protocol: TCP
+        nodePort: 30041
+        

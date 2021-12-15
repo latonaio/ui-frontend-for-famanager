@@ -1,5 +1,5 @@
-# ui-ftontend-for-famanager
-ui-frontend-for-famanager は、FAビジョンシステムのUIフロントエンドリソースです。
+# ui-frontend-for-famanager
+ui-frontend-for-famanager は、AIONプラットフォーム が 提供する FAビジョンシステム の UIフロントエンド リソース です。
 
 ## 概要
 * テンプレート登録機能
@@ -43,12 +43,11 @@ REACT_APP_WS_URL="ws://192.168.***.***"
 
 ## Kubernetes上での使用方法
 
-aion-service-definitions の services.yml に以下のように記載し、AION を実行してください。
-
-```yaml
-  ui-frontend-for-famanager:
+services.yamlに次の設定を追加し、AIONを実行してください。
+```
+   ui-frontend-for-famanager:
     scale: 1
-    startup: ues
+    startup: yes
     always: yes
     network: NodePort
     env:
@@ -58,6 +57,7 @@ aion-service-definitions の services.yml に以下のように記載し、AION 
         port: 4000
         protocol: TCP
         nodePort: 30041
+
 ```
 
 `http://[エッジ端末の IP アドレス]:30041/` でフロントエンドを開くことができます。

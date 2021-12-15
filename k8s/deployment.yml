@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: ui-frontend-for-famanager
+  name: ui-frontend-for-famanager
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ui-frontend-for-famanager
+  template:
+    metadata:
+      labels:
+        run: ui-frontend-for-famanager
+    spec:
+      hostname: ui-frontend-for-famanager
+      containers:
+        - name: ui-frontend-for-famanager
+          image: ui-frontend-for-famanager:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4000
+          env:
+            - name: REACT_APP_FACTORY_NAME
+              value: "ラトナ株式会社"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: ui-frontend-for-famanager
+  name: ui-frontend-for-famanager
+  namespace: default
+spec:
+  selector:
+    run: ui-frontend-for-famanager
+  type: NodePort
+  ports:
+    - port: 4000
+      protocol: TCP
+      targetPort: 4000
+      nodePort: 30041
+---

@@ -1,0 +1,215 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.Footer {
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  font-size: 30px;
+  height: 50px;
+  vertical-align: bottom;
+  color: white;
+  right: 2%;
+}
+
+.menu-grid-cell {
+  width: 125px;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-button > svg {
+  font-size: 60px;
+  position: absolute;
+  left: 10%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.menu-button-text {
+  text-align: left;
+  padding-left: 30%;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+}
+
+.header-image {
+  position: absolute;
+  top: 10px;
+  left: 12%;
+  height: 110px;
+}
+
+.header-logo {
+  position: absolute;
+  top: 10px;
+  height: 100px;
+}
+
+.footer-image {
+  position: absolute;
+  right: 10px;
+  bottom: 40px;
+}
+
+div.button-area > div > button.ui.button.icon.left.labeled {
+  font-size: 2.7em;
+  padding-left: 2.0em !important; /* semantic-uiの!importantより優先させるため */
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+  color: rgb(242, 242, 242);
+  background-color: rgb(160, 158, 159);
+  border-radius: 0.5em;
+}
+
+div.button-area > div > button.ui.button.icon.left.labeled > div {
+  text-align: left;
+}
+
+div.button-area > div > button.ui.button.icon.left.labeled > i.icon {
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0);
+  width: 2em;
+}
+
+.point-list-item {
+  background-color: rgb(89, 88, 88);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  width: 95%;
+  font-size: 35px;
+  color: whitesmoke;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.point-list-item > button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  font-size: 20px;
+  color: red;
+}
+
+.point-list-item > span {
+  font-size: 20px;
+}
+
+div.ui.segment.connection-status {
+  background-color: rgb(160, 158, 159);
+  border-color: rgb(160, 158, 159);
+}
+
+div.ui.segment.connection-status div.ui.header {
+  color: white;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+}
+
+.ui.button.hidden {
+  display: none;
+}
+
+.image-area {
+  background-color: rgb(43, 83, 118);
+  margin-top: 0;
+  margin-left: 0;
+  width: 94%;
+  height: 67vh;
+}
+
+.image-area > * {
+  margin: 1%;
+}
+
+.image-area > canvas {
+  padding: 1%;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.image-area > .time-label {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+  float: right;
+}
+
+.selected-view {
+  background-color: limegreen !important;
+}
+
+.selected-point {
+  background-color: darkblue !important;
+}
+
+div.vehicle-list {
+  background-color: white;
+  padding: 1vh 1vw;
+}
+
+div.point-register-main > div.ui.grid > div.column > div.ui.vertical.tabular.menu > a {
+  writing-mode: vertical-lr; /* 縦書き */
+  float: right;
+  color: white;
+  background-color: rgb(160, 158, 159);
+  border-color: rgb(160, 158, 159);
+  border-radius: 1em 0 0 1em / 1em 0 0 1em !important; /* semantic-uiのcssよりも優先させるため */
+  font-size: 1.8em;
+  padding-left: 1.0em;
+  padding-right: 1.0em;
+  height: 9.0em;
+  text-align: center;
+}
+
+div.point-register-main > div.ui.grid > div.column > div.ui.vertical.tabular.menu > a.active.item {
+  background-color: limegreen;
+  border-color: limegreen;
+}
+
+button.ui.button.view-area-button.disabled {
+  background-color: limegreen;
+  border-color: limegreen;
+  opacity: 1 !important; /* semantic-uiのcssよりも優先させるため */
+  color: white;
+}
+
+button.ui.button.view-area-button:not(.disabled) {
+  background-color: rgb(160, 158, 159);
+  border-color: rgb(160, 158, 159);
+  color: white;
+}
+
+div.ui.segment.point-segment.selected {
+  background-color: rgb(160, 158, 159);
+  border-color: rgb(160, 158, 159);
+}
+
+
+div.point-register-main > div.ui.grid > div.column {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+div.ui.grid > div.row.narrow {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+button.ui.button.reversed-disable.disabled {
+  opacity: 1 !important;
+}
+
+button.ui.button.reversed-disable:not(.disabled) {
+  opacity: 0.45;
+}

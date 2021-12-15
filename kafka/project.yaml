@@ -1,0 +1,111 @@
+devices:
+  aion-cloud:
+    addr: 10.0.0.1
+    aionHome: /var/lib/aion
+  worker-node:
+    addr: 10.0.0.6
+    aionHome: /var/lib/aion
+microservices:
+  check-multiple-camera-connection:
+    scale: 1
+    startup: yes
+    always: yes
+    env:
+      MYSQL_PORT: 3306
+      MYSQL_USER: "UserName"
+      MYSQL_PASSWORD: "PassWord!"
+    volumeMountPathList:
+      - /devices:/dev:Bidirectional
+    privileged: yes
+    nextService:
+      video0:
+        - name: stream-usb-video-by-rtsp-1
+      video1:
+        - name: stream-usb-video-by-rtsp-2
+    targetNode: pluto-desktop
+  stream-usb-video-by-rtsp-1:
+    scale: 1
+    always: yes
+    multiple: no
+    network: NodePort
+    privileged: yes
+    ports:
+      - name: usb
+        protocol: TCP
+        port: 8555
+        nodePort: 30055
+    env:
+      SUFFIX: 1
+    volumeMountPathList:
+      - /devices:/dev:Bidirectional
+    nextService:
+      default:
+        - name: template-matching-by-opencv-for-rtsp-1
+    targetNode: pluto-desktop
+  stream-usb-video-by-rtsp-2:
+    scale: 1
+    always: yes
+    multiple: no
+    network: NodePort
+    privileged: yes
+    ports:
+      - name: usb
+        protocol: TCP
+        port: 8556
+        nodePort: 30056
+    env:
+      SUFFIX: 2
+    volumeMountPathList:
+      - /devices:/dev:Bidirectional
+    nextService:
+      default:
+        - name: template-matching-by-opencv-for-rtsp-2
+    targetNode: pluto-desktop
+  template-matching-by-opencv-for-rtsp-1:
+    startup: no
+    multiple: no
+    network: NodePort
+    env:
+      PROCESS_NUM: 1
+      KAFKA_MODE: true
+    ports:
+      - name: fitness
+        protocol: TCP
+        port: 5000
+        nodePort: 32001
+    targetNode: pluto-desktop
+    nextService:
+      kafka:
+        - name: kafka-producer
+  template-matching-by-opencv-for-rtsp-2:
+    startup: no
+    multiple: no
+    network: NodePort
+    env:
+      PROCESS_NUM: 2
+      KAFKA_MODE: true
+    ports:
+      - name: fitness
+        protocol: TCP
+        port: 5001
+        nodePort: 32002
+    targetNode: pluto-desktop
+    nextService:
+      kafka:
+        - name: kafka-producer
+  direct-next-service:
+    scale: 1
+    startup: yes
+    always: yes
+    nextService:
+      template-1:
+        - name: template-matching-by-opencv-for-rtsp-1
+      template-2:
+        - name: template-matching-by-opencv-for-rtsp-2
+    targetNode: pluto-desktop
+  kafka-producer:
+    scale: 1
+    startup: no
+    always: yes
+    env:
+      KAFKA_SERVER: kafka-0.kafka-service.default.svc.cluster.local:9092,kafka-1.kafka-service.default.svc.cluster.local:9092,kafka-2.kafka-service.default.svc.cluster.local:9092
